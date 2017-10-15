@@ -31,6 +31,4 @@ public class Account {
     public void setPinCode(Integer pinCode) {
         this.pinCode = pinCode;
     }
-
-
 }

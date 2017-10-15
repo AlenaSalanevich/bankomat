@@ -3,9 +3,9 @@ package com.epam.training.repository;
 import com.epam.training.repository.model.Account;
 
 import java.io.*;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+
 
 public class AccountFileRepository implements AccountRepository {
     private static final String fileName = "Account.db";
@@ -16,7 +16,6 @@ public class AccountFileRepository implements AccountRepository {
 
     @Override
     public Account save(Account account) {
-
         File fileDB = new File(fileName);
         File fileDB1 = new File(fileNameTemp);
         try (BufferedReader reader = new BufferedReader(new FileReader(fileDB));
@@ -46,7 +45,7 @@ public class AccountFileRepository implements AccountRepository {
     }
 
     @Override
-    public Account get(Integer pinCode)  {
+    public Account get(Integer pinCode) {
         File fileDB = new File(fileName);
         try (BufferedReader reader = new BufferedReader(new FileReader(fileDB))) {
             while (true) {
@@ -56,7 +55,6 @@ public class AccountFileRepository implements AccountRepository {
                 }
                 String[] accountInfo = accountLine.split(",");
                 Integer pinCodeDB = Integer.valueOf(accountInfo[0]);
-
                 if (pinCode.equals(pinCodeDB)) {
                     Account account = new Account(pinCodeDB, Integer.valueOf(accountInfo[1]));
                     return account;
@@ -66,7 +64,6 @@ public class AccountFileRepository implements AccountRepository {
             throw new RuntimeException("DateBase is unavailable", e);
         }
         return null;
-
     }
 }
 
